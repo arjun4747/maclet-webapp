@@ -1,0 +1,143 @@
+.admin-container {
+    padding: 100px 2rem 4rem;
+    min-height: 100vh;
+    background: #050505;
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.admin-card {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.admin-title {
+    color: white;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.admin-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.admin-input:focus {
+    outline: none;
+    border-color: #0071e3;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.admin-btn {
+    background: #0071e3;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s;
+}
+
+.admin-btn:hover {
+    background: #005bb5;
+}
+
+.status-msg {
+    color: #44d62c;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Preview Section */
+.admin-preview {
+    flex: 1;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.preview-title {
+    color: #888;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.preview-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.preview-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.preview-info h4 {
+    color: white;
+    font-size: 0.95rem;
+    margin: 0 0 4px 0;
+}
+
+.preview-info p {
+    color: #0071e3;
+    font-size: 0.85rem;
+    margin: 0;
+    font-weight: 600;
+}
