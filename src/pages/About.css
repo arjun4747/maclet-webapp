@@ -1,0 +1,103 @@
+.about-container {
+    padding-top: 100px;
+    min-height: 100vh;
+    background: #000;
+    color: white;
+    overflow: hidden;
+}
+
+.about-hero {
+    text-align: center;
+    padding: 6rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.about-subtitle {
+    font-size: 1.5rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 4rem;
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 3rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.about-card h2 {
+    color: #0071e3;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.about-card p {
+    color: #aaa;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.about-image-section {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 4rem;
+}
+
+.brand-visual {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #0071e3 0%, transparent 70%);
+    opacity: 0.2;
+    filter: blur(40px);
+    animation: pulseBrand 4s infinite ease-in-out;
+}
+
+@keyframes pulseBrand {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 2.5rem;
+    }
+}

@@ -1,0 +1,180 @@
+.accessories-section {
+    padding: 8rem 2rem;
+    background-color: #050505;
+    /* Slightly lighter than pure black for contrast */
+    min-height: 100vh;
+}
+
+.accessories-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.acc-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(180deg, #fff, #888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.acc-subtitle {
+    color: #666;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Standardized Grid Layout */
+.acc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* Responsive uniform columns */
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.acc-card {
+    background: #111;
+    border-radius: 24px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    height: 420px;
+    /* Increased slightly for better spacing */
+    min-height: 420px;
+    max-height: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.acc-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Image & Overlay */
+.acc-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    /* Fixed image height */
+    margin-bottom: 1.5rem;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #1a1a1a;
+}
+
+.acc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.acc-card:hover .acc-img {
+    transform: scale(1.1);
+}
+
+.acc-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.acc-card:hover .acc-overlay {
+    opacity: 1;
+}
+
+.add-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    color: black;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.add-btn:hover {
+    transform: scale(1.15);
+}
+
+/* Info */
+.acc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.acc-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.acc-cat {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.acc-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.acc-price {
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.shop-link {
+    color: #0071e3;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.shop-link:hover {
+    color: #409cff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .acc-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+}

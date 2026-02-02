@@ -1,0 +1,120 @@
+.brands-section {
+    padding: 8rem 0;
+    background-color: #000;
+    position: relative;
+    overflow: hidden;
+    /* subtle gradient separator from hero */
+    background: linear-gradient(to bottom, #000000 0%, #050505 50%, #000000 100%);
+}
+
+.brands-header {
+    text-align: center;
+    margin-bottom: 5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.brands-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(180deg, #fff 0%, #666 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.brands-subtitle {
+    font-size: 1.2rem;
+    color: #444;
+    margin-top: 0.5rem;
+    font-weight: 400;
+}
+
+/* Marquee Container */
+.marquee-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0;
+    /* Gradient Masks for fading edges */
+    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+.marquee-track {
+    display: flex;
+    gap: 6rem;
+    /* Space between items */
+    width: max-content;
+    animation: scroll 30s linear infinite;
+}
+
+/* Pause on hover for interaction */
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.brand-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Premium Glass styling for each logo item */
+    padding: 1.5rem 3rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.brand-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.brand-text {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    /* Muted default state */
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.brand-item:hover .brand-text {
+    color: #fff;
+    /* Bright on hover */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+        /* Move half the length (original set) */
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .marquee-track {
+        gap: 3rem;
+        animation-duration: 20s;
+    }
+
+    .brand-item {
+        padding: 1rem 2rem;
+    }
+
+    .brand-text {
+        font-size: 1.4rem;
+    }
+}
