@@ -28,12 +28,16 @@
     font-size: 4rem;
     line-height: 1.1;
     margin: 0 0 1.5rem 0;
-    background: linear-gradient(180deg, #fff 0%, #888 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 700;
+    color: #FFFFFF;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-family: 'Inter', 'Manrope', system-ui, -apple-system, sans-serif;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
 }
+
+
 
 .teaser-subtitle {
     font-size: 1.25rem;
@@ -70,6 +74,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
+    /* Ensure 3D model isn't clipped */
 }
 
 .connection-line {

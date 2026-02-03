@@ -1,18 +1,12 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-<<<<<<< HEAD
-=======
 import './Hero.css'; // Import custom styles for hero content
 import { Link } from 'react-router-dom';
->>>>>>> friend/main
 import { Environment, ContactShadows } from '@react-three/drei';
 import MacBook from './MacBook';
 
 export default function Hero() {
     return (
-<<<<<<< HEAD
-        <section className="hero-section">
-=======
         <section id="hero" className="hero-section">
             <div className="hero-content">
                 <h1 className="hero-title">
@@ -23,7 +17,6 @@ export default function Hero() {
             <a href="#latest-picks" className="cta-button side-btn left">Elevate Your Setup</a>
             <Link to="/accessories" className="cta-button side-btn right">The Essentials</Link>
 
->>>>>>> friend/main
             <Canvas
                 camera={{ position: [0, 0, 20], fov: 35 }}
                 dpr={[1, 2]}

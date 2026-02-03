@@ -1,5 +1,5 @@
 .brands-section {
-    padding: 8rem 0;
+    padding: 6rem 0;
     background-color: #000;
     position: relative;
     overflow: hidden;
@@ -9,87 +9,106 @@
 
 .brands-header {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
     position: relative;
     z-index: 2;
 }
 
 .brands-title {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 0.875rem;
+    /* Small and subtle, like a label */
+    font-weight: 500;
+    /* Regular to Medium */
     margin: 0;
-    background: linear-gradient(180deg, #fff 0%, #666 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    letter-spacing: -0.02em;
+    color: #ffffff;
+    /* Pure white */
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Minimal modern sans-serif */
+    letter-spacing: 0.08em;
+    /* Slightly increased for elegance */
+    text-align: center;
+    opacity: 0.9;
+    /* Slight opacity for elegance */
+    text-transform: uppercase;
+    /* Use uppercase for "label" feel logic, or keep typical case? The user text example "{ Choose your powerhouse }" is Sentence case. I will stick to exact text case but maybe add some tracking. Typically section labels are uppercase, but the text is sentence case. I will NOT force uppercase based on user prompt showing sentence case. */
+    /* Ensuring no glow or neon */
+    text-shadow: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    background: none;
 }
 
-.brands-subtitle {
-    font-size: 1.2rem;
-    color: #444;
-    margin-top: 0.5rem;
-    font-weight: 400;
-}
-
-/* Marquee Container */
-.marquee-container {
+/* Marquee Wrapper */
+.marquee-wrapper {
     position: relative;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Glass Container Style */
+.glass-container {
+    width: 100%;
     overflow: hidden;
-    padding: 2rem 0;
-    /* Gradient Masks for fading edges */
-    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    padding: 2.5rem 0;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    /* Dark translucent background */
+    backdrop-filter: blur(10px);
+    /* Backdrop blur */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Thin, low-contrast border highlight */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    /* Gradient Masks for fading edges inside the glass container */
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 
 .marquee-track {
     display: flex;
-    gap: 6rem;
+    gap: 5rem;
     /* Space between items */
     width: max-content;
-    animation: scroll 30s linear infinite;
-}
-
-/* Pause on hover for interaction */
-.marquee-track:hover {
-    animation-play-state: paused;
+    animation: scroll 40s linear infinite;
+    /* Smooth, slow horizontal motion */
 }
 
 .brand-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Premium Glass styling for each logo item */
-    padding: 1.5rem 3rem;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
+    height: 60px;
+    /* Uniform visual height constraint */
     transition: all 0.3s ease;
-    cursor: pointer;
+    opacity: 1;
+    /* Full opacity for vibrant colors */
+    animation: float 6s ease-in-out infinite;
 }
 
+.brand-logo {
+    height: 100%;
+    /* Maintain uniform visual height */
+    width: auto;
+    object-fit: contain;
+    /* constant aspect ratio */
+    /* Removed filter to show original brand colors */
+    transition: all 0.4s ease;
+    transform-origin: center;
+}
+
+/* Hover Effects */
 .brand-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    /* No opacity change needed as it is already 1 */
 }
 
-.brand-text {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.4);
-    /* Muted default state */
-    letter-spacing: 0.05em;
-    transition: color 0.3s ease;
-}
-
-.brand-item:hover .brand-text {
-    color: #fff;
-    /* Bright on hover */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+.brand-item:hover .brand-logo {
+    /* Kept scale effect only */
+    transform: scale(1.15);
+    /* Gentle scale-up on the image itself */
 }
 
 @keyframes scroll {
@@ -98,23 +117,42 @@
     }
 
     100% {
-        transform: translateX(-50%);
-        /* Move half the length (original set) */
+        transform: translateX(calc(-100% / 3));
+        /* Move one-third (since we have 3 sets) */
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+        /* Very slight vertical float */
     }
 }
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .brands-title {
+        font-size: 1.8rem;
+    }
+
     .marquee-track {
         gap: 3rem;
-        animation-duration: 20s;
+        animation-duration: 25s;
+        /* Slightly faster purely relative to screen width, but visually slow */
     }
 
     .brand-item {
-        padding: 1rem 2rem;
+        height: 40px;
     }
 
-    .brand-text {
-        font-size: 1.4rem;
+    .glass-container {
+        border-radius: 12px;
+        padding: 2rem 0;
     }
 }

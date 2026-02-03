@@ -1,0 +1,102 @@
+.testimonials-section {
+    padding: 6rem 0;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+}
+
+.testimonials-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+    color: #ffffff;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: 0.05em;
+    text-align: center;
+    opacity: 0.95;
+}
+
+/* Marquee Container */
+.marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.marquee-track {
+    --marquee-gap: 2rem;
+    display: flex;
+    gap: var(--marquee-gap);
+    width: max-content;
+    animation: scrollRight 60s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(calc((-100% - var(--marquee-gap)) / 3));
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+/* Photo-only card style */
+.testimonial-card {
+    background: #0f0f0f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 0;
+    width: 250px;
+    height: 320px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px) translateZ(0);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.client-photo-full {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    will-change: transform;
+}
+
+.testimonial-card:hover .client-photo-full {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .marquee-track {
+        animation-duration: 40s;
+        --marquee-gap: 1.5rem;
+    }
+
+    .testimonial-card {
+        width: 200px;
+        height: 260px;
+    }
+}

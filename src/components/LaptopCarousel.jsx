@@ -32,7 +32,7 @@ export default function LaptopCarousel() {
 
     return (
         <section id="latest-picks" className="carousel-section">
-            <h2 className="carousel-title">Latest Picks</h2>
+            <h2 className="carousel-title">&#123; Latest Picks &#125;</h2>
 
             <div className="carousel-container">
                 <div

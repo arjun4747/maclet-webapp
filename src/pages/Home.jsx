@@ -4,7 +4,7 @@ import Brands from '../components/Brands';
 import LaptopCarousel from '../components/LaptopCarousel';
 import AccessoriesTeaser from '../components/AccessoriesTeaser';
 import PageTransition from '../components/PageTransition';
-import Services from '../components/Services';
+import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
             <Brands />
             <LaptopCarousel />
             <AccessoriesTeaser />
-            <Services />
+            <Testimonials />
             <Footer />
         </PageTransition>
     );

@@ -160,15 +160,21 @@
 }
 
 .shop-link {
-    color: #0071e3;
+    background: white;
+    color: black;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 100px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
     text-decoration: none;
     font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s;
 }
 
 .shop-link:hover {
-    color: #409cff;
+    background: var(--accent, #3287ff);
+    color: white;
 }
 
 /* Responsive */
