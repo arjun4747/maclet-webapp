@@ -133,4 +133,22 @@
     .laptop-grid-container {
         grid-template-columns: 1fr;
     }
+
+    .laptop-title {
+        font-size: 2.5rem;
+        /* Reduced from 3.5rem for mobile */
+        padding: 0 1rem;
+        /* Ensure padding helps wrap */
+    }
+
+    .laptop-header {
+        margin-bottom: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .laptop-title {
+        font-size: 2rem;
+        /* Further reduction for small screens */
+    }
 }

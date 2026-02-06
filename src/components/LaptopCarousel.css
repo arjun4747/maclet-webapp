@@ -37,6 +37,14 @@
     transform-style: preserve-3d;
 }
 
+@media (max-width: 480px) {
+    .carousel-container {
+        width: 90vw;
+        /* Fluid width on mobile */
+        max-width: 300px;
+    }
+}
+
 .carousel-track {
     width: 100%;
     height: 100%;
@@ -52,19 +60,54 @@
     height: 380px;
     left: 10px;
     top: 10px;
-    background: rgba(255, 255, 255, 0.05);
+    background: #000;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    backdrop-filter: blur(10px);
     display: flex;
+    /* Kept for compatibility if needed, but mainly for button centering */
     flex-direction: column;
-    justify-content: space-between;
-    padding: 1.5rem;
+    justify-content: flex-end;
+    /* Push button to bottom */
+    align-items: center;
+    /* Center button */
+    padding: 0;
+    padding: 0;
+    /* Remove padding */
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    /* Backface visibility: hidden if you want to hide back items, but visible is cooler for glass */
     backface-visibility: visible;
-    text-align: center;
     transition: box-shadow 0.3s;
+    overflow: hidden;
+    /* Clip image */
+}
+
+.carousel-card.active {
+    box-shadow: 0 0 40px rgba(50, 135, 255, 0.4);
+    /* Glow only on active */
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 480px) {
+    .carousel-card {
+        width: 100%;
+        /* Fill container */
+        height: auto;
+        /* Allow height to grow with content */
+        min-height: 400px;
+        /* Maintain minimum height */
+        left: 0;
+        top: 0;
+        /* Reduce shadow complexity on mobile */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .carousel-card.active {
+        box-shadow: 0 0 20px rgba(50, 135, 255, 0.3);
+    }
+
+    .carousel-title {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
 }
 
 .carousel-card:hover {
@@ -72,23 +115,7 @@
     border-color: white !important;
 }
 
-.card-img {
-    width: 90%;
-    height: 180px;
-    object-fit: contain;
-    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
-    /* Deeper shadow */
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    /* Bounce effect */
-    pointer-events: none;
-    margin: 1rem auto;
-}
-
-.carousel-card:hover .card-img {
-    transform: scale(1.15) translateY(-15px) rotate(-5deg);
-    /* Dynamic float */
-    filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.7));
-}
+/* .card-img removed - using background-image on container */
 
 .card-name {
     color: white;
@@ -104,19 +131,35 @@
 }
 
 .view-btn {
+    position: relative;
+    z-index: 2;
+    /* Above image */
     background: white;
+    /* Restored "old" style: White bg */
     color: black;
+    /* Restored "old" style: Black text */
     border: none;
-    padding: 8px 20px;
+    padding: 8px 24px;
     border-radius: 20px;
+    /* Restored rounded pill shape */
     font-weight: 600;
+    /* Restored boldness */
     cursor: pointer;
-    margin-top: 1rem;
+    margin-bottom: 2rem;
+    /* Position from bottom */
     transition: transform 0.2s;
+    /* Restored simple transform */
+    text-transform: none;
+    /* Removed uppercase if it wasn't there before, though arguably 'View' looks fine either way. Original didn't have text-transform. */
+    font-size: 1rem;
+    /* Restored standard size */
+    letter-spacing: normal;
 }
 
 .view-btn:hover {
     transform: scale(1.05);
+    /* Restored original hover scale */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-controls {

@@ -149,39 +149,64 @@
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.5rem;
+    /* Smaller font for mobile */
+    line-height: 1.1;
   }
 
   .hero-line:nth-child(2) {
     font-size: 2rem;
+    /* Smaller font for mobile */
   }
 
-  /* On mobile, stack them at the bottom again because sides are too narrow */
+  .hero-content {
+    top: 20%;
+    padding: 0 1rem;
+    /* Add padding to prevent text touching edges */
+    width: 100%;
+  }
+
+  /* On mobile, stack buttons at the bottom */
   .side-btn {
     position: absolute;
     top: auto;
-    bottom: 15%;
+    bottom: 12%;
+    /* Adjusted bottom position */
     transform: none;
+    width: 80%;
+    /* Consistent width */
+    left: 10%;
+    /* Center horizontally */
+    right: auto;
+    text-align: center;
   }
 
   .side-btn.left {
-    left: 20px;
-    width: calc(50% - 30px);
-    text-align: center;
+    bottom: 20%;
+    /* Stack above the other button */
+    left: 10%;
+    width: 80%;
   }
 
   .side-btn.right {
-    right: 20px;
-    width: calc(50% - 30px);
-    text-align: center;
+    bottom: 10%;
+    right: auto;
+    left: 10%;
+    width: 80%;
   }
 
   .side-btn.left:hover,
   .side-btn.right:hover {
     transform: scale(1.05);
+    /* Only scale, don't move */
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 2rem;
   }
 
-  .hero-content {
-    top: 20%;
-    /* Move text up more on mobile */
+  .hero-line:nth-child(2) {
+    font-size: 1.5rem;
   }
 }

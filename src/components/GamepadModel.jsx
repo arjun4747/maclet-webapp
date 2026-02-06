@@ -8,11 +8,22 @@ export default function GamepadModel() {
     const modelRef = useRef();
     const [hovered, setHovered] = useState(false);
 
+    // Responsive offset state
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     // Initial setup and idle animation
     useEffect(() => {
         if (modelRef.current) {
-            // Initial position - Centered
-            modelRef.current.position.set(0, 0, 0);
+            // Initial position - Responsive centering
+            const baseX = isMobile ? -0.8 : 0; // Shift left on mobile to center visually
+            modelRef.current.position.set(baseX, 0, 0);
             // Initial rotation
             modelRef.current.rotation.set(0.2, -0.5, 0);
 
@@ -25,7 +36,7 @@ export default function GamepadModel() {
                 ease: "power1.inOut"
             });
         }
-    }, []);
+    }, [isMobile]); // Re-run if mobile state changes to adjust position
 
     // Mouse interaction for subtle parallax
     useFrame((state) => {
@@ -35,15 +46,20 @@ export default function GamepadModel() {
         // Normalized mouse x (-1 to 1)
         const mouseX = state.mouse.x;
 
+        // Reduce intensity on mobile
+        const intensity = isMobile ? 0.05 : 0.14;
+        const posIntensity = isMobile ? 0.05 : 0.2;
+
         // Target Rotations (Restricted to Y-axis only)
         // Max rotation +/- 8 degrees (approx 0.14 radians)
         // Base rotation -0.5 preserved
-        const targetRotY = -0.5 + (mouseX * 0.14);
+        const targetRotY = -0.5 + (mouseX * intensity);
         const targetRotX = 0.2; // Fixed subtle tilt
 
         // Target Positions (Restricted to X-axis only)
-        // Small horizontal parallax
-        const targetPosX = mouseX * 0.2;
+        // Small horizontal parallax with Responsive Base Offset
+        const baseX = isMobile ? -0.8 : 0; // Maintain offset during parallax
+        const targetPosX = baseX + (mouseX * posIntensity);
 
         // Damping / Smoothing factor
         const damping = hovered ? 0.05 : 0.02; // Very smooth inertia

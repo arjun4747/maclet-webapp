@@ -138,21 +138,32 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .brands-title {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
+        /* Adjusted for better visibility */
     }
 
     .marquee-track {
-        gap: 3rem;
+        gap: 2rem;
+        /* Reduce gap significantly */
         animation-duration: 25s;
-        /* Slightly faster purely relative to screen width, but visually slow */
     }
 
     .brand-item {
         height: 40px;
     }
 
+    .brand-item img {
+        height: 100%;
+        max-width: 100px;
+        /* Prevent overly wide logos */
+    }
+
     .glass-container {
         border-radius: 12px;
         padding: 2rem 0;
+    }
+
+    .brands-section {
+        padding: 4rem 0;
     }
 }
