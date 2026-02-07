@@ -147,8 +147,8 @@
     cursor: pointer;
     margin-bottom: 2rem;
     /* Position from bottom */
-    transition: transform 0.2s;
-    /* Restored simple transform */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Smoother transition */
     text-transform: none;
     /* Removed uppercase if it wasn't there before, though arguably 'View' looks fine either way. Original didn't have text-transform. */
     font-size: 1rem;
@@ -159,7 +159,8 @@
 .view-btn:hover {
     transform: scale(1.05);
     /* Restored original hover scale */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    /* Premium soft glow */
 }
 
 .carousel-controls {

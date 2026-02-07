@@ -6,6 +6,16 @@ import { Environment, ContactShadows } from '@react-three/drei';
 import MacBook from './MacBook';
 
 export default function Hero() {
+    const [isLoaded, setIsLoaded] = React.useState(false);
+
+    // Simple component to signal when Suspense has finished loading
+    function ModelLoader() {
+        React.useEffect(() => {
+            setIsLoaded(true);
+        }, []);
+        return null;
+    }
+
     return (
         <section id="hero" className="hero-section">
             <div className="hero-content">
@@ -20,12 +30,21 @@ export default function Hero() {
             <Canvas
                 camera={{ position: [0, 0, 20], fov: 35 }}
                 dpr={[1, 2]}
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    opacity: isLoaded ? 1 : 0,
+                    transition: 'opacity 1.5s ease-out'
+                }}
             >
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[10, 10, 5]} intensity={1} />
                 <Suspense fallback={null}>
                     <MacBook position={[0, -2, 0]} scale={14} />
+                    <ModelLoader />
                     <Environment preset="city" />
                 </Suspense>
                 <ContactShadows position={[0, -4, 0]} opacity={0.4} scale={30} blur={2.5} far={4} />

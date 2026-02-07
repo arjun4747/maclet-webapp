@@ -210,12 +210,15 @@ body {
   }
 
   .mobile-logo {
-    height: 75px;
-    /* Increased to 75px as requested */
-    width: auto;
+    width: 100px;
+    /* Standard mobile size */
+    margin-left: 0;
+    /* Reset margin */
+    height: auto;
     object-fit: contain;
     flex-shrink: 0;
     /* Prevent shrinking on small screens */
+    max-width: 100%;
   }
 
   /* Hamburger Button */

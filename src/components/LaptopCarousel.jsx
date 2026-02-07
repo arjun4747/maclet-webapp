@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { laptops as laptopsData } from '../data/laptops';
 import './LaptopCarousel.css';
 
-const laptops = [
+const carouselItems = [
     { id: 1, name: "MacBook Pro 16", price: "$2,499", image: "/images/latestpick1.jpg", color: "#0071e3" },
     { id: 2, name: "Dell XPS 15", price: "$1,899", image: "/images/latestpick2.jpg", color: "#3287ff" },
     { id: 3, name: "Razer Blade 16", price: "$3,299", image: "/images/latestpick3.jpg", color: "#44d62c" },
@@ -12,9 +14,10 @@ const laptops = [
 ];
 
 export default function LaptopCarousel() {
+    const navigate = useNavigate();
     const [currIndex, setCurrIndex] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
-    const count = laptops.length;
+    const count = carouselItems.length;
 
     // Rotate 360 degrees / number of items
     const theta = 360 / count;
@@ -55,6 +58,24 @@ export default function LaptopCarousel() {
     const next = () => setCurrIndex(currIndex + 1);
     const prev = () => setCurrIndex(currIndex - 1);
 
+    const handleViewClick = (item) => {
+        // Try to find a matching laptop in the actual data by name
+        // We look for the carousel item name within the data item name or vice versa
+        const found = laptopsData.find(laptop =>
+            laptop.name.toLowerCase().includes(item.name.toLowerCase()) ||
+            item.name.toLowerCase().includes(laptop.name.toLowerCase())
+        );
+
+        if (found) {
+            navigate(`/laptops/${found.slug}`);
+        } else {
+            // Fallback: Pick a random laptop from the available data
+            const randomIndex = Math.floor(Math.random() * laptopsData.length);
+            const randomLaptop = laptopsData[randomIndex];
+            navigate(`/laptops/${randomLaptop.slug}`);
+        }
+    };
+
     return (
         <section id="latest-picks" className="carousel-section">
             <h2 className="carousel-title">&#123; Latest Picks &#125;</h2>
@@ -66,22 +87,27 @@ export default function LaptopCarousel() {
                         transform: `translateZ(-${radius}px) rotateY(${-currIndex * theta}deg)`
                     }}
                 >
-                    {laptops.map((laptop, index) => {
+                    {carouselItems.map((item, index) => {
                         const angle = theta * index;
                         return (
                             <div
-                                key={laptop.id}
+                                key={item.id}
                                 className="carousel-card"
                                 style={{
                                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                                    borderColor: laptop.color,
-                                    backgroundImage: `url(${laptop.image})`,
+                                    borderColor: item.color,
+                                    backgroundImage: `url(${item.image})`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat'
                                 }}
                             >
-                                <button className="view-btn">View</button>
+                                <button
+                                    className="view-btn"
+                                    onClick={() => handleViewClick(item)}
+                                >
+                                    View
+                                </button>
                             </div>
                         );
                     })}

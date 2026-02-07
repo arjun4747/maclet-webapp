@@ -76,6 +76,10 @@
     justify-content: center;
     overflow: visible;
     /* Ensure 3D model isn't clipped */
+    min-width: 350px;
+    /* Prevent horizontal squashing */
+    flex-shrink: 0;
+    /* Prevent flex shrinking */
 }
 
 .connection-line {
@@ -127,7 +131,8 @@
 
     .teaser-visual {
         margin-top: 3rem;
-        height: 200px;
+        height: 400px;
+        /* Increased from 200px to match desktop height */
         width: 100%;
     }
 

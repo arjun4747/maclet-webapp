@@ -4,6 +4,8 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  /* Mobile viewport stability */
   background-color: #000;
   overflow: hidden;
   /* To ensure content is above canvas if needed later, though absolute positioning handles it */
