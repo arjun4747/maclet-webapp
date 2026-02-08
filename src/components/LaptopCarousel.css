@@ -139,8 +139,6 @@
     color: black;
     /* Restored "old" style: Black text */
     border: none;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
     padding: 8px 24px;
     border-radius: 20px;
     /* Restored rounded pill shape */
@@ -158,18 +156,11 @@
     letter-spacing: normal;
 }
 
-/* Hover effect only for non-touch devices (Desktop) */
-@media (hover: hover) {
-    .view-btn:hover {
-        transform: scale(1.05);
-        background: #0071e3;
-        color: white;
-        box-shadow: 0 0 20px rgba(0, 113, 227, 0.4);
-    }
-}
-
-.view-btn:active {
-    transform: scale(0.95);
+.view-btn:hover {
+    transform: scale(1.05);
+    /* Restored original hover scale */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    /* Premium soft glow */
 }
 
 .carousel-controls {
