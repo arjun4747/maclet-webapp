@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 export default function MacBook(props) {
@@ -8,6 +8,20 @@ export default function MacBook(props) {
     // Ensure we handle the model load gracefully.
     // Note: This expects 'macbook.glb' to be in /public/models/
     const { scene } = useGLTF('/models/macbook.glb');
+    const { gl } = useThree();
+
+    // Optimize textures for sharpness
+    React.useEffect(() => {
+        const anisotropy = gl.capabilities.getMaxAnisotropy();
+        scene.traverse((child) => {
+            if (child.isMesh && child.material && child.material.map) {
+                child.material.map.anisotropy = anisotropy;
+                child.material.map.minFilter = THREE.LinearMipmapLinearFilter;
+                child.material.map.magFilter = THREE.LinearFilter;
+                child.material.needsUpdate = true;
+            }
+        });
+    }, [scene, gl]);
 
     useFrame((state) => {
         if (!group.current) return;

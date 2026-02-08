@@ -29,7 +29,8 @@ export default function Hero() {
 
             <Canvas
                 camera={{ position: [0, 0, 20], fov: 35 }}
-                dpr={[1, 2]}
+                dpr={window.devicePixelRatio}
+                gl={{ antialias: true, powerPreference: "high-performance", alpha: true, preserveDrawingBuffer: true }}
                 style={{
                     position: 'absolute',
                     top: 0,
