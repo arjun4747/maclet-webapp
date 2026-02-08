@@ -55,6 +55,19 @@ export default function MacBook(props) {
         );
     });
 
+    // Optimize materials for mobile
+    React.useEffect(() => {
+        if (props.isMobile) {
+            scene.traverse((child) => {
+                if (child.isMesh) {
+                    child.castShadow = false;
+                    child.receiveShadow = false;
+                    // child.material.dithering = false; // optional
+                }
+            });
+        }
+    }, [scene, props.isMobile]);
+
     return (
         <group ref={group} {...props} dispose={null}>
             <primitive object={scene} />
