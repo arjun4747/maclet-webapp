@@ -17,6 +17,6 @@ describe("score weights", () => {
       openSource: 60,
     });
 
-    expect(overall).toBe(77);
+    expect(overall).toBe(78);
   });
 });

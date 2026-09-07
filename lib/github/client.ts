@@ -19,7 +19,7 @@ async function githubFetch<T>(path: string, init?: RequestInit): Promise<T> {
     ...init,
     headers: {
       Accept: "application/vnd.github+json",
-      Authorization: `******
+      Authorization: "Bearer " + token,
       "X-GitHub-Api-Version": "2022-11-28",
       ...(init?.headers ?? {}),
     },
