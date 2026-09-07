@@ -1,16 +1,67 @@
-# React + Vite
+# Proof-of-Work Developer Discovery Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Recruiter-facing platform MVP that discovers developers from public GitHub proof-of-work signals instead of resume-only claims.
 
-Currently, two official plugins are available:
+## Current status
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository is in **Phase 1**:
 
-## React Compiler
+- Next.js App Router + TypeScript initialized
+- Tailwind CSS configured
+- Prisma PostgreSQL schema baseline created
+- Core architecture folders scaffolded
+- GitHub API client skeleton added
+- Core recruiter routes and API placeholders scaffolded
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Architecture summary
 
-## Expanding the ESLint configuration
+GitHub Public API → Import Pipeline → PostgreSQL (Prisma) → Analysis Engine → Skill Detection → Explainable Scoring → Search & Ranking → Recruiter Dashboard → Developer Profile
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+See:
+
+- `/docs/architecture.md`
+- `/docs/scoring.md`
+- `/docs/github-api.md`
+
+## Tech stack
+
+- Next.js (App Router)
+- React + TypeScript
+- Tailwind CSS
+- PostgreSQL
+- Prisma
+- Zod
+- Vitest
+
+## Environment variables
+
+Copy `.env.example` to `.env` and configure:
+
+- `DATABASE_URL`
+- `GITHUB_TOKEN`
+- `NEXT_PUBLIC_APP_NAME`
+- `DEMO_MODE`
+- `IMPORT_RATE_LIMIT_PER_MINUTE`
+- `LOG_LEVEL`
+
+## Setup
+
+```bash
+npm install
+npm run prisma:generate
+npm run dev
+```
+
+## Quality checks
+
+```bash
+npm run test
+npm run lint
+npm run typecheck
+```
+
+## Notes
+
+- Scores are evidence-based signals, not absolute judgments of ability.
+- GitHub stars and commit counts are not treated as direct skill equivalence.
+- `GITHUB_TOKEN` is server-side only and must never be exposed to client code.
