@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SkillConfidence {
+  STRONG
+  MODERATE
+  LIMITED
+}
+
+enum EvidenceDimension {
+  ACTIVITY
+  CONSISTENCY
+  CONTRIBUTION_DEPTH
+  PROJECT_QUALITY
+  OPEN_SOURCE
+  SKILL
+}
+
+model Developer {
+  id              String           @id @default(cuid())
+  githubUserId    BigInt           @unique
+  githubUsername  String           @unique
+  name            String?
+  bio             String?
+  location        String?
+  avatarUrl       String
+  githubUrl       String
+  websiteUrl      String?
+  followers       Int              @default(0)
+  publicRepoCount Int              @default(0)
+  githubCreatedAt DateTime
+  lastFetchedAt   DateTime?
+  lastAnalyzedAt  DateTime?
+  repositories    Repository[]
+  skills          DeveloperSkill[]
+  score           DeveloperScore?
+  evidenceItems   Evidence[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@index([location])
+  @@index([lastAnalyzedAt])
+}
+
+model Repository {
+  id                 String               @id @default(cuid())
+  githubRepoId       BigInt               @unique
+  developerId        String
+  developer          Developer            @relation(fields: [developerId], references: [id], onDelete: Cascade)
+  name               String
+  fullName           String
+  description        String?
+  url                String
+  isFork             Boolean              @default(false)
+  forkSourceFullName String?
+  stars              Int                  @default(0)
+  forks              Int                  @default(0)
+  openIssues         Int                  @default(0)
+  sizeKb             Int                  @default(0)
+  defaultBranch      String
+  hasReadme          Boolean              @default(false)
+  licenseSpdx        String?
+  topics             Json?
+  languages          RepositoryLanguage[]
+  evidenceItems      Evidence[]
+  createdAtGithub    DateTime
+  updatedAtGithub    DateTime
+  pushedAtGithub     DateTime?
+  lastFetchedAt      DateTime?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+
+  @@index([developerId])
+  @@index([pushedAtGithub])
+  @@index([isFork])
+}
+
+model RepositoryLanguage {
+  id           String     @id @default(cuid())
+  repositoryId String
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  language     String
+  bytes        Int
+  percentage   Float
+
+  @@unique([repositoryId, language])
+  @@index([language])
+}
+
+model Skill {
+  id         String           @id @default(cuid())
+  slug       String           @unique
+  name       String           @unique
+  category   String?
+  developers DeveloperSkill[]
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+}
+
+model DeveloperSkill {
+  id              String          @id @default(cuid())
+  developerId     String
+  skillId         String
+  developer       Developer       @relation(fields: [developerId], references: [id], onDelete: Cascade)
+  skill           Skill           @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  confidence      SkillConfidence
+  evidenceSummary String?
+  evidenceItems   Json?
+  firstSeenAt     DateTime?
+  lastSeenAt      DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@unique([developerId, skillId])
+  @@index([skillId])
+  @@index([confidence])
+}
+
+model DeveloperScore {
+  id                String    @id @default(cuid())
+  developerId       String    @unique
+  developer         Developer @relation(fields: [developerId], references: [id], onDelete: Cascade)
+  activity          Int
+  consistency       Int
+  contributionDepth Int
+  projectQuality    Int
+  openSource        Int
+  overallScore      Int
+  weightsSnapshot   Json
+  rationaleSummary  String?
+  calculatedAt      DateTime
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([overallScore])
+  @@index([calculatedAt])
+}
+
+model Evidence {
+  id           String            @id @default(cuid())
+  developerId  String
+  repositoryId String?
+  developer    Developer         @relation(fields: [developerId], references: [id], onDelete: Cascade)
+  repository   Repository?       @relation(fields: [repositoryId], references: [id], onDelete: SetNull)
+  dimension    EvidenceDimension
+  signalKey    String
+  signalValue  String?
+  explanation  String
+  metadata     Json?
+  observedAt   DateTime
+  createdAt    DateTime          @default(now())
+
+  @@index([developerId, dimension])
+  @@index([repositoryId])
+}
